@@ -1,4 +1,4 @@
-name: CI
+name: Newman API Tests
 
 on:
   push:
@@ -8,23 +8,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: windows-latest 
+  run-api-tests:
+    runs-on: windows-latest  # ✅ Windows ortamı
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Install Postman CLI
-        shell: powershell
+      - name: Install Newman and HTML Reporter
+        run: npm install -g newman newman-reporter-html
+
+      - name: Run Newman Collection
         run: |
-          [System.Net.ServicePointManager]::SecurityProtocol = 3072
-          iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))
+          newman run "One Hub.postman_collection.json" `
+            -e "ImportantMethods.postman_environment.json" `
+            -r html `
+            --reporter-html-export "newman-report.html"
 
-      - name: Login to Postman CLI
-        run: postman login --with-api-key ${{ secrets.POSTMEN_KEY }}
+      - name: Upload Newman HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-html-report
+          path: newman-report.html
 
-      - name: Run API tests
-        run: postman collection run "${{ github.workspace }}\postman\collections\One Hub.json" -e "44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d"

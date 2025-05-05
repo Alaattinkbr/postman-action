@@ -365,36 +365,12 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "c07e45eb-d044-4ad9-b2f3-a9f8e7ed4483",
 												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"var requestUrl = pm.request.url.toString();\r",
-													"var requestBody = pm.request.body.raw;\r",
-													"var statusCode = pm.response.code;\r",
-													"var responseTime = pm.response.responseTime;\r",
-													"var responseBody = pm.response.text();\r",
-													"\r",
-													"pm.test(\"Check number of records\", function () {\r",
-													"    var dataCount = jsonData.data.length;\r",
-													"\r",
-													"    console.log(\"\\n\");\r",
-													"    console.log(\"📤 [API Request]\");\r",
-													"    console.log(\"• URL       : \" + requestUrl);\r",
-													"    console.log(\"• Method    : \" + pm.request.method);\r",
-													"    console.log(\"• Body      : \" + requestBody);\r",
-													"\r",
-													"    console.log(\"\\n📥 [API Response]\");\r",
-													"    console.log(\"• Status    : \" + statusCode);\r",
-													"    console.log(\"• Time      : \" + responseTime + \" ms\");\r",
-													"    console.log(\"• Body      : \" + responseBody);\r",
-													"\r",
-													"    console.log(\"\\n📊 [Test Info]\");\r",
-													"    console.log(\"• Record Count: \" + dataCount);\r",
-													"    console.log(\"====================================\\n\");\r",
-													"});"
+													""
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "c07e45eb-d044-4ad9-b2f3-a9f8e7ed4483"
+												"packages": {}
 											}
 										}
 									],
@@ -407,7 +383,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"customerCode\": null,\n  \"newCustomerCode\": \"0011805658\",\n  \"oldCustomerCode\": \"0011842524\",\n  \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200036558\\\"},{\\\"cardno\\\":\\\"1200036559\\\"},{\\\"cardno\\\":\\\"1200099899\\\"}]}\",\n  \"requestDate\": \"2023-09-27T00:00:00\",\n  \"isNowFlag\": 1,\n  \"isBulkHandover\": false,\n  \"callerUser\": \"285\",\n  \"requestUser\": \"285\",\n  \"requestChannel\": \"SFSBO\",\n  \"oneHubLogSequence\": 0\n}",
+											"raw": "{\r\n  \"customerCode\": null,\r\n  \"newCustomerCode\": \"0011805658\",\r\n  \"oldCustomerCode\": \"0011842524\",\r\n  \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200122813\\\"},{\\\"cardno\\\":\\\"1200122812\\\"}]}\",\r\n  \"requestDate\": \"2025-05-06T00:00:00\",\r\n  \"RequestDateString\": \"2025-05-06T00:00:00\",\r\n  \"isNowFlag\": 0,\r\n  \"isAllPlateBulkHandover\": false,\r\n  \"callerUser\": \"93221\",\r\n  \"requestUser\": \"93221\",\r\n  \"requestChannel\": \"SFSBO\",\r\n  \"oneHubLogSequence\": 0\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -434,6 +410,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "754441a7-baee-4393-990a-009dc9e571ea",
 												"exec": [
 													"var jsonData = pm.response.json();\r",
 													"var requestUrl = pm.request.url.toString();\r",
@@ -462,8 +439,7 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "754441a7-baee-4393-990a-009dc9e571ea"
+												"packages": {}
 											}
 										}
 									],
@@ -476,7 +452,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"customerCode\": null,\n  \"newCustomerCode\": \"0011805658\",\n  \"oldCustomerCode\": \"0011842524\",\n  \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200000486\\\"},{\\\"cardno\\\":\\\"1200000510\\\"},{\\\"cardno\\\":\\\"1200036558\\\"},{\\\"cardno\\\":\\\"1200036559\\\"},{\\\"cardno\\\":\\\"1200099899\\\"}]}\",\n  \"requestDate\": \"2023-09-28T00:00:00\",\n  \"isNowFlag\": 0,\n  \"isBulkHandover\": false,\n  \"callerUser\": \"285\",\n  \"requestUser\": \"285\",\n  \"requestChannel\": \"SFSBO\",\n  \"oneHubLogSequence\": 0,\n  \"handoverSequence\": \"23\"æ√\n}",
+											"raw": "{\n  \"customerCode\": null,\n  \"newCustomerCode\": \"0011805658\",\n  \"oldCustomerCode\": \"0011842524\",\n  \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200000486\\\"},{\\\"cardno\\\":\\\"1200000510\\\"},{\\\"cardno\\\":\\\"1200036558\\\"},{\\\"cardno\\\":\\\"1200036559\\\"},{\\\"cardno\\\":\\\"1200099899\\\"}]}\",\n  \"requestDate\": \"2023-09-28T00:00:00\",\n  \"isNowFlag\": 0,\n  \"isBulkHandover\": false,\n  \"callerUser\": \"285\",\n  \"requestUser\": \"285\",\n  \"requestChannel\": \"SFSBO\",\n  \"oneHubLogSequence\": 0,\n  \"handoverSequence\": \"23\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -909,7 +885,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"cardNumber\": \"2300000323\",\r\n  \"operatingCustomerCode\": \"string\",\r\n  \"customerCode\": \"0011805658\",\r\n  \"cardText\": \"string\",\r\n  \"isReseller\": true,\r\n  \"statusCode\": \"string\",\r\n  \"departmentCode\": \"string\",\r\n  \"paginationFilter\": {\r\n    \"currentPage\": 1,\r\n    \"pageSize\": 1\r\n  },\r\n  \"cardStatusCodes\": [\r\n    \"string\"\r\n  ],\r\n  \"dataTableRequest\": {\r\n    \"draw\": 0,\r\n    \"start\": 0,\r\n    \"length\": 0,\r\n    \"columns\": [\r\n      {\r\n        \"data\": \"string\",\r\n        \"name\": \"string\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": \"string\",\r\n          \"regex\": \"string\"\r\n        }\r\n      }\r\n    ],\r\n    \"search\": {\r\n      \"value\": \"string\",\r\n      \"regex\": \"string\"\r\n    },\r\n    \"order\": [\r\n      {\r\n        \"column\": 0,\r\n        \"dir\": \"string\"\r\n      }\r\n    ]\r\n  }\r\n}",
+									"raw": "{\r\n  \"customerCode\": null,\r\n  \"cardNumber\": \"2400034238\",\r\n  \"cardText\": null,\r\n  \"departmentCode\": null,\r\n  \"statusCode\": \"All\",\r\n  \"isReseller\": true,\r\n  \"paginationFilter\": null,\r\n  \"dataTableRequest\": {\r\n    \"draw\": 1,\r\n    \"start\": 0,\r\n    \"length\": 100,\r\n    \"columns\": [\r\n      {\r\n        \"data\": \"cardNumber\",\r\n        \"name\": null,\r\n        \"searchable\": false,\r\n        \"orderable\": false,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardNumber\",\r\n        \"name\": \"CARD_NO\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"customerCode\",\r\n        \"name\": \"CUST_CD\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"customerName\",\r\n        \"name\": \"CUST_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"resellerCode\",\r\n        \"name\": \"RSL_CD\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"resellerName\",\r\n        \"name\": \"RSL_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"statusName\",\r\n        \"name\": \"CARD_STS\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"balanceAmount\",\r\n        \"name\": \"BLN_AMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardDefaultAmount\",\r\n        \"name\": \"DFLT_CRDT_AMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"dailyLimit\",\r\n        \"name\": \"G_LMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"dailyTransaction\",\r\n        \"name\": \"GN_TRX\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardText\",\r\n        \"name\": \"CARD_TXT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"discountPercentage\",\r\n        \"name\": \"DSC_PCT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"mifareId\",\r\n        \"name\": \"MIFARE_ID\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"departmentName\",\r\n        \"name\": \"DEPT_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"expirationDate\",\r\n        \"name\": \"EXP_DT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"updateDate\",\r\n        \"name\": \"ADT_DT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      }\r\n    ],\r\n    \"search\": {\r\n      \"value\": null,\r\n      \"regex\": \"false\"\r\n    },\r\n    \"order\": [\r\n      {\r\n        \"column\": 1,\r\n        \"dir\": \"desc\"\r\n      }\r\n    ]\r\n  },\r\n  \"cardStatusCodes\": [\"A\", \"I\", \"B\"]\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1101,7 +1077,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"cardNumber\": \"1600035220\",\r\n  \"operatingCustomerCode\": \"string\",\r\n  \"customerCode\": \"string\",\r\n  \"cardText\": \"string\",\r\n  \"isReseller\": true,\r\n  \"statusCode\": \"string\",\r\n  \"departmentCode\": \"string\",\r\n  \"paginationFilter\": {\r\n    \"currentPage\": 0,\r\n    \"pageSize\": 0\r\n  },\r\n  \"cardStatusCodes\": [\r\n    \"string\"\r\n  ],\r\n  \"dataTableRequest\": {\r\n    \"draw\": 0,\r\n    \"start\": 0,\r\n    \"length\": 0,\r\n    \"columns\": [\r\n      {\r\n        \"data\": \"string\",\r\n        \"name\": \"string\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": \"string\",\r\n          \"regex\": \"string\"\r\n        }\r\n      }\r\n    ],\r\n    \"search\": {\r\n      \"value\": \"string\",\r\n      \"regex\": \"string\"\r\n    },\r\n    \"order\": [\r\n      {\r\n        \"column\": 0,\r\n        \"dir\": \"string\"\r\n      }\r\n    ]\r\n  }\r\n}",
+									"raw": "{\r\n  \"customerCode\": null,\r\n  \"cardNumber\": \"2400034238\",\r\n  \"cardText\": null,\r\n  \"departmentCode\": null,\r\n  \"statusCode\": \"All\",\r\n  \"isReseller\": true,\r\n  \"paginationFilter\": null,\r\n  \"dataTableRequest\": {\r\n    \"draw\": 1,\r\n    \"start\": 0,\r\n    \"length\": 100,\r\n    \"columns\": [\r\n      {\r\n        \"data\": \"cardNumber\",\r\n        \"name\": null,\r\n        \"searchable\": false,\r\n        \"orderable\": false,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardNumber\",\r\n        \"name\": \"CARD_NO\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"customerCode\",\r\n        \"name\": \"CUST_CD\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"customerName\",\r\n        \"name\": \"CUST_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"resellerCode\",\r\n        \"name\": \"RSL_CD\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"resellerName\",\r\n        \"name\": \"RSL_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"statusName\",\r\n        \"name\": \"CARD_STS\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"balanceAmount\",\r\n        \"name\": \"BLN_AMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardDefaultAmount\",\r\n        \"name\": \"DFLT_CRDT_AMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"dailyLimit\",\r\n        \"name\": \"G_LMT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"dailyTransaction\",\r\n        \"name\": \"GN_TRX\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"cardText\",\r\n        \"name\": \"CARD_TXT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"discountPercentage\",\r\n        \"name\": \"DSC_PCT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"mifareId\",\r\n        \"name\": \"MIFARE_ID\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"departmentName\",\r\n        \"name\": \"DEPT_NM\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"expirationDate\",\r\n        \"name\": \"EXP_DT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      },\r\n      {\r\n        \"data\": \"updateDate\",\r\n        \"name\": \"ADT_DT\",\r\n        \"searchable\": true,\r\n        \"orderable\": true,\r\n        \"search\": {\r\n          \"value\": null,\r\n          \"regex\": \"false\"\r\n        }\r\n      }\r\n    ],\r\n    \"search\": {\r\n      \"value\": null,\r\n      \"regex\": \"false\"\r\n    },\r\n    \"order\": [\r\n      {\r\n        \"column\": 1,\r\n        \"dir\": \"desc\"\r\n      }\r\n    ]\r\n  },\r\n  \"cardStatusCodes\": [\"A\", \"I\", \"B\"]\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1165,7 +1141,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"customerCode\": \"0011805658\",\r\n  \"resellerCode\": \"0011798197\",\r\n  \"limit\": 1000,\r\n  \"textLoad\": \"string\",\r\n  \"callerCustomer\": \"string\",\r\n  \"callerUser\": \"string\",\r\n  \"requestChannel\": \"string\"\r\n}",
+									"raw": "{\r\n  \"customerCode\": \"0010327115\",\r\n  \"resellerCode\": \"0010327115\",\r\n  \"textLoad\": \"test\",\r\n  \"callerCustomer\": \"*\",\r\n  \"callerUser\": \"93221\",\r\n  \"requestChannel\": null,\r\n  \"limit\": 500\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1379,7 +1355,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customerCode\": \"0011798605\",\r\n    \"cardQuantity\": 23,\r\n    \"address\": \"ARZU ARZU\",\r\n    \"provinceName\": \"ADANA\",\r\n    \"districtName\": \"SEYHAN\",\r\n    \"postCode\": \"01120\",\r\n    \"contactName\": \"TAYFUN ŞENSES\",\r\n    \"contactPhone\": \"3423372084\",\r\n    \"callerUser\": \"92131\",\r\n    \"issuerId\": \"KOZKART\",\r\n    \"cardText\": \"hata hep  hata\",\r\n    \"isMassRequest\": false,\r\n    \"OzelAlanUpload\": null\r\n}",
+									"raw": "{\r\n    \"customerCode\": \"0011842524\",\r\n    \"cardQuantity\": 5,\r\n    \"address\": \"KOCAYOL CAD IBRAHIMAGA SOK N:7 BOSTANCI KADIKOY ISTANBUL\",\r\n    \"provinceName\": \"İSTANBUL\",\r\n    \"districtName\": \"KADIKÖY\",\r\n    \"postCode\": \"81040\",\r\n    \"contactName\": \"SARPER ERALP\",\r\n    \"contactPhone\": \"2123334444\",\r\n    \"callerUser\": \"93221\",\r\n    \"issuerId\": \"KOZKART\",\r\n    \"cardText\": \"11842524\",\r\n    \"isMassRequest\": false,\r\n    \"OzelAlanUpload\": null\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1976,7 +1952,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"customerCode\": \"11805658\",\r\n  \"cardNumber\": \"7032334284\",\r\n  \"requestChannel\": \"string\",\r\n  \"requestUser\": \"string\"\r\n}",
+									"raw": "{\r\n  \"customerCode\": \"0013138282\",\r\n  \"cardNumber\": \"7033993325\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2455,7 +2431,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"customerCode\": \"0011805658\",\r\n  \"perNumber\": \"string\",\r\n  \"cardAmount\": 0,\r\n  \"cardQuantity\": 0,\r\n  \"cardData1\": \"string\",\r\n  \"cardData2\": \"string\",\r\n  \"ozelAlan\": \"string\",\r\n  \"address\": \"string\",\r\n  \"provinceName\": \"string\",\r\n  \"districtName\": \"string\",\r\n  \"postCode\": \"string\",\r\n  \"contactName\": \"string\",\r\n  \"contactPhone\": \"string\",\r\n  \"trackingNumber\": \"string\",\r\n  \"callerUser\": \"string\",\r\n  \"requestChannel\": \"string\"\r\n}",
+									"raw": "{\r\n  \"customerCode\": \"0011804766\",\r\n  \"perNumber\": null,\r\n  \"cardAmount\": 0.0,\r\n  \"CardAmountString\": \"0\",\r\n  \"cardQuantity\": 5,\r\n  \"cardData1\": \"müşteri\",\r\n  \"cardData2\": \"asd\",\r\n  \"ozelAlan\": \"Carwash Kart\",\r\n  \"address\": \"MULTINET PLAZA. FULYA MH.MEVLÜT PEHL?VAN SK. 12\",\r\n  \"provinceName\": \"ISTANBUL\",\r\n  \"districtName\": \"???L? ?STANBUL\",\r\n  \"postCode\": \"34360\",\r\n  \"contactName\": \"MÜŞTERI DENEYIMI\",\r\n  \"contactPhone\": \"2123368800\",\r\n  \"callerUser\": \"93221\",\r\n  \"trackingNumber\": null,\r\n  \"JsonData\": [\r\n    {\r\n      \"cardAmount\": null,\r\n      \"cardData1\": \"müşteri\",\r\n      \"cardData2\": \"asd\",\r\n      \"ozelAlan\": \"Carwash Kart\"\r\n    },\r\n    {\r\n      \"cardAmount\": null,\r\n      \"cardData1\": \"müşteri\",\r\n      \"cardData2\": \"asd\",\r\n      \"ozelAlan\": \"Carwash Kart\"\r\n    },\r\n    {\r\n      \"cardAmount\": null,\r\n      \"cardData1\": \"müşteri\",\r\n      \"cardData2\": \"asd\",\r\n      \"ozelAlan\": \"Carwash Kart\"\r\n    },\r\n    {\r\n      \"cardAmount\": null,\r\n      \"cardData1\": \"müşteri\",\r\n      \"cardData2\": \"asd\",\r\n      \"ozelAlan\": \"Carwash Kart\"\r\n    },\r\n    {\r\n      \"cardAmount\": null,\r\n      \"cardData1\": \"müşteri\",\r\n      \"cardData2\": \"asd\",\r\n      \"ozelAlan\": \"Carwash Kart\"\r\n    }\r\n  ],\r\n  \"isMassRequest\": false,\r\n  \"RowId\": 0,\r\n  \"RequestNumber\": 0,\r\n  \"CustomerName\": null,\r\n  \"OzelAlanUpload\": null,\r\n  \"ValidationErrors\": null\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"

@@ -1,4 +1,4 @@
-name: API Test Report CI (Ubuntu)
+name: API Test Report CI (Windows)
 
 on:
   push:
@@ -8,61 +8,59 @@ on:
   workflow_dispatch:
 
 jobs:
-  api-test:
-    runs-on: ubuntu-latest  # Ubuntu ortamını kullanıyoruz çünkü jq, Node.js vs. burada daha uyumlu.
+  build:
+    runs-on: windows-latest
 
     steps:
-      # Adım 1: Repo'yu checkout et
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      # Adım 2: Node.js'i kur
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Versiyon belirtildi (gerekirse değiştirebilirsin)
+          node-version: '16'
 
-      # Adım 3: Newman ve HTMLExtra raporlama eklentisini kur
-      - name: Install Newman & HTMLExtra Reporter
+      - name: Install Newman and HTMLExtra Reporter
         run: |
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      # Adım 4: Postman Environment dosyasını çek
       - name: Fetch Postman Environment
         run: |
-          curl -L "https://testapi.turkiyeshell.com/maincore/enviroment/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" \
-          -H "X-Api-Key: ${{ secrets.POSTMEN_KEY }}" \
+          curl -X GET "https://api.getpostman.com/environments/6817abb559ad9700018da576-15958487f1d19c85dbc3991284c81a49fe" `
+          -H "X-Api-Key: ${{ secrets.GOKHAN_KEY }}" `
           -o environment.json
 
-      # Adım 5: Collection dosyasının yerini kontrol et (debugging)
-      - name: Debug - List files in collection folder
+      - name: Transform Environment File (JQ yerine PowerShell)
         run: |
-          ls -R postman
+          $envData = Get-Content environment.json | ConvertFrom-Json
+          $envData.environment | ConvertTo-Json -Depth 10 | Out-File -Encoding UTF8 environment_transformed.json
 
-      # Adım 6: Newman ile API testlerini çalıştır ve raporu oluştur
+      - name: Show contents of environment.json
+        run: |
+          Write-Output "Contents of environment.json"
+          Get-Content environment.json
+
+      - name: Debug - List files in workspace
+        run: Get-ChildItem -Recurse
+
       - name: Run API tests with Newman and generate HTMLExtra report
         run: |
-          newman run "postman/collections/OneHub.postman_collection.json" \
-          -e environment.json \
-          --reporters cli,htmlextra \
+          newman run "${{ github.workspace }}\postman\collections\One Hub.json" `
+          -e environment_transformed.json `
+          --reporters cli,htmlextra `
           --reporter-htmlextra-export "newman-report.html"
 
-      # Adım 7: Raporu GitHub Pages'e yükle
-      - name: Upload report to GitHub Pages branch
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-          publish_branch: gh-pages
-          destination_dir: reports
+      - name: Debug - Check if HTML report exists
+        run: |
+          if (Test-Path "newman-report.html") {
+            Write-Output "Report generated successfully."
+          } else {
+            Write-Error "Report not found!"
+          }
 
-      # Adım 8: Pull request üzerine rapor linkini ekle
-      - name: Comment report link on PR
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@v2
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
         with:
-          header: newman-report
-          message: |
-            ✅ API test raporu hazır:  
-            📄 [Newman HTML Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/reports/newman-report.html)
+          name: newman-html-report
+          path: newman-report.html

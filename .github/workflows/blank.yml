@@ -1,38 +1,33 @@
-name: Run Postman Tests
+name: API Test Report CI (Windows)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  run-postman-tests:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-    - name: Install Newman and HTML reporter
-      run: |
-        npm install -g newman newman-reporter-html
+      - name: Install Postman CLI
+        run: |
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
-    - name: Run Postman Collection
-      run: |
-        mkdir -p test-results
-        newman run ".\postman\collections\OneHub.postman_collection.json" ^
-          -e environment_transformed.json ^
-          --reporters cli,htmlextra ^
-          --reporter-htmlextra-export "newman-report.html"
-          
-    - name: Upload Test Report as Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: postman-report
-        path: test-results/report.html
+      - name: Add Postman CLI to PATH
+        run: |
+          echo "C:\Users\runneradmin\.postman" >> $env:GITHUB_PATH
+
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_KEY }}
+
+      - name: Run API tests
+        run: postman collection run "${{ github.workspace }}\postman\collections\One Hub.json" -e "680bdbab3b888b00017b90ab-243aeab1530a9bdbd7ce40ce460e1442eb"

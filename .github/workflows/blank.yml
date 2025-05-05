@@ -38,7 +38,7 @@ jobs:
         run: type environment_transformed.json
 
       - name: Run API tests with Newman and generate HTMLExtra report
-        run: newman run ".\\postman\\collections\\One Hub.postman_collection.json" -e environment_transformed.json --reporters cli,htmlextra --reporter-htmlextra-export "newman-report.html"
+        run: newman run ".\\postman\\collections\\One Hub.postman_collection.json" -e ImportantMethods.postman_environment.json --reporters cli,htmlextra --reporter-htmlextra-export "newman-report.html"
 
       - name: Upload report to GitHub Pages branch
         uses: peaceiris/actions-gh-pages@v3

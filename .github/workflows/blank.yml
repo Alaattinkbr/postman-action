@@ -1,4 +1,4 @@
-name: API Test Report CI (Windows)
+name: API Test Report CI (Ubuntu)
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   api-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out the repository
@@ -25,20 +25,22 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      - name: Fetch Postman Environment
+      - name: Fetch Postman Environment File
         run: |
-          curl -L "https://testapi.turkiyeshell.com/maincore/enviroment/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" `
-          -H "X-Api-Key: ${{ secrets.POSTMEN_KEY }}" `
+          curl -L "https://testapi.turkiyeshell.com/maincore/enviroment/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" \
+          -H "X-Api-Key: ${{ secrets.POSTMEN_KEY }}" \
           -o environment.json
 
-      - name: Transform Environment File for Newman
-        run: jq ".environment" environment.json > environment_transformed.json
-
-      - name: Debug - Show environment file
-        run: type environment_transformed.json
+      - name: Debug - List files in collection folder
+        run: |
+          ls -R postman
 
       - name: Run API tests with Newman and generate HTMLExtra report
-        run: newman run ".\\postman\\collections\\One Hub.postman_collection.json" -e ImportantMethods.postman_environment.json --reporters cli,htmlextra --reporter-htmlextra-export "newman-report.html"
+        run: |
+          newman run "postman/collections/OneHub.postman_collection.json" \
+          -e environment.json \
+          --reporters cli,htmlextra \
+          --reporter-htmlextra-export "newman-report.html"
 
       - name: Upload report to GitHub Pages branch
         uses: peaceiris/actions-gh-pages@v3
@@ -56,4 +58,3 @@ jobs:
           message: |
             ✅ API test raporu hazır:  
             📄 [Newman HTML Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/reports/newman-report.html)
-

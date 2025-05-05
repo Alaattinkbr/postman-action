@@ -23,11 +23,19 @@ jobs:
           iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))
         shell: pwsh
 
+      - name: Add Postman CLI to PATH
+        run: |
+          $PostmanPath = "$env:USERPROFILE\.postman"
+          echo "Postman CLI path: $PostmanPath"
+          $env:PATH += ";$PostmanPath"
+        shell: pwsh
+
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_KEY }}
         shell: pwsh
 
       - name: Run API tests
         run: |
-          postman collection run "${env:GITHUB_WORKSPACE}\postman\collections\One Hub.json" -e "44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d"
+          $collectionPath = Join-Path $env:GITHUB_WORKSPACE "postman\collections\One Hub.json"
+          postman collection run "`"$collectionPath`"" -e "44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d"
         shell: pwsh

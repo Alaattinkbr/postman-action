@@ -1,70 +1,38 @@
-name: API Test Report CI (Windows)
+name: Run Postman Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches: [ main ]
 
 jobs:
-  api-test:
-    runs-on: windows-latest
+  run-postman-tests:
+    runs-on: ubuntu-latest
 
     steps:
-      # Repo'yu indir
-      - name: Check out the repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Node.js kur
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      # newman ve raporlama modülünü local kur
-      - name: Initialize project & install Newman locally
-        run: |
-          npm init -y
-          npm install newman newman-reporter-htmlextra
+    - name: Install Newman and HTML reporter
+      run: |
+        npm install -g newman newman-reporter-html
 
-      # Environment dosyasını çek
-      - name: Fetch Postman Environment
-        run: |
-          curl -L "https://testapi.turkiyeshell.com/maincore/enviroments/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" ^
-          -H "X-Api-Key: ${{ secrets.POSTMEN_KEY }}" ^
-          -o environment.json
-
-      # Environment dosyasını dönüştür
-      - name: Transform Environment File
-        run: |
-          $envData = Get-Content environment.json | ConvertFrom-Json
-          $envData.environment | ConvertTo-Json -Depth 10 | Out-File -Encoding UTF8 environment_transformed.json
-
-      # Debug: Dosyaları listele
-      - name: Debug - Check file structure
-        run: Get-ChildItem -Recurse
-
-      # API testlerini çalıştır
-      - name: Run API tests with Newman
-        run: |
-          .\node_modules\.bin\newman run ".\postman\collections\OneHub.postman_collection.json" ^
+    - name: Run Postman Collection
+      run: |
+        mkdir -p test-results
+        newman run ".\postman\collections\OneHub.postman_collection.json" ^
           -e environment_transformed.json ^
           --reporters cli,htmlextra ^
           --reporter-htmlextra-export "newman-report.html"
-
-      # Debug: Rapor oluştu mu?
-      - name: Debug - Check if HTML report exists
-        run: |
-          if (Test-Path "newman-report.html") {
-            Write-Output "✅ Rapor başarıyla oluşturuldu."
-          } else {
-            Write-Error "❌ Rapor bulunamadı!"
-          }
-
-      # Raporu artefakt olarak kaydet
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: newman-html-report
-          path: newman-report.html
+          
+    - name: Upload Test Report as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: postman-report
+        path: test-results/report.html

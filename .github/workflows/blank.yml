@@ -30,4 +30,4 @@ jobs:
         run: postman login --with-api-key ${{ secrets.POSTMAN_KEY }}
 
       - name: Run API tests
-        run: postman collection run "${{ github.workspace }}\postman\collections\One Hub.json" -e "680bdbab3b888b00017b90ab-243aeab1530a9bdbd7ce40ce460e1442eb"
+        run: postman collection run "${{ github.workspace }}\postman\collections\One Hub.json"

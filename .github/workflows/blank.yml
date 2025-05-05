@@ -22,9 +22,13 @@ jobs:
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
+      - name: Add Postman CLI to PATH
+        run: |
+          echo "C:\Users\runneradmin\.postman" >> $env:GITHUB_PATH
 
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_KEY }}
 
       - name: Run API tests
-        run: postman collection run "${{ github.workspace }}\postman\collections\One Hub.json" -e "681943110c363900016d0fee-271a7abbe8e7ac9dd6f13849d1d7fbd0b5"
+        run: |
+          postman collection run "${{ github.workspace }}\postman\collections\One Hub.json" --environment-id 681943110c363900016d0fee-271a7abbe8e7ac9dd6f13849d1d7fbd0b5

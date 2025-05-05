@@ -9,32 +9,38 @@ on:
 
 jobs:
   api-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Ubuntu ortamını kullanıyoruz çünkü jq, Node.js vs. burada daha uyumlu.
 
     steps:
+      # Adım 1: Repo'yu checkout et
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      # Adım 2: Node.js'i kur
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '16'  # Versiyon belirtildi (gerekirse değiştirebilirsin)
 
+      # Adım 3: Newman ve HTMLExtra raporlama eklentisini kur
       - name: Install Newman & HTMLExtra Reporter
         run: |
           npm install -g newman
           npm install -g newman-reporter-htmlextra
 
-      - name: Fetch Postman Environment File
+      # Adım 4: Postman Environment dosyasını çek
+      - name: Fetch Postman Environment
         run: |
           curl -L "https://testapi.turkiyeshell.com/maincore/enviroment/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" \
           -H "X-Api-Key: ${{ secrets.POSTMEN_KEY }}" \
           -o environment.json
 
+      # Adım 5: Collection dosyasının yerini kontrol et (debugging)
       - name: Debug - List files in collection folder
         run: |
           ls -R postman
 
+      # Adım 6: Newman ile API testlerini çalıştır ve raporu oluştur
       - name: Run API tests with Newman and generate HTMLExtra report
         run: |
           newman run "postman/collections/OneHub.postman_collection.json" \
@@ -42,6 +48,7 @@ jobs:
           --reporters cli,htmlextra \
           --reporter-htmlextra-export "newman-report.html"
 
+      # Adım 7: Raporu GitHub Pages'e yükle
       - name: Upload report to GitHub Pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -50,6 +57,7 @@ jobs:
           publish_branch: gh-pages
           destination_dir: reports
 
+      # Adım 8: Pull request üzerine rapor linkini ekle
       - name: Comment report link on PR
         if: github.event_name == 'pull_request'
         uses: marocchino/sticky-pull-request-comment@v2

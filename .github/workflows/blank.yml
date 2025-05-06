@@ -23,7 +23,7 @@ jobs:
           powershell -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
       - name: Login to Postman CLI
-        run: postman login --with-api-key ${{ secrets.POSTMAN_KEY }}
+        run: postman login --with-api-key ${{ secrets.POSTMAN_K }}
 
       - name: Run API tests
         run: postman collection run "${env:GITHUB_WORKSPACE}\postman\collections\One Hub.json" -e "44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d"

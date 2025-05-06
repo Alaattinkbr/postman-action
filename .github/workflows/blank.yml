@@ -48,4 +48,3 @@ jobs:
         with:
           name: newman-html-report
           path: newman-report.html
-

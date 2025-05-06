@@ -1,0 +1,50 @@
+name: Run Postman Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Newman and Reporter
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+
+      - name: Download Postman Environment
+        run: |
+          curl -X GET "https://api.getpostman.com/environments/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" ^
+          -H "X-Api-Key: ${{ secrets.POSTMAN_K }}" ^
+          -o environment.json
+
+      - name: Transform Environment File (PowerShell)
+        run: |
+          $json = Get-Content environment.json | ConvertFrom-Json
+          $json.environment | ConvertTo-Json -Depth 100 | Out-File -Encoding UTF8 environment_transformed.json
+
+      - name: Run Newman Collection Tests and Generate HTML Report
+        run: |
+          newman run "${env:GITHUB_WORKSPACE}\postman\collections\One Hub.json" ^
+            -e environment_transformed.json ^
+            --reporters cli,htmlextra ^
+            --reporter-htmlextra-export "newman-report.html"
+
+      - name: Upload Newman HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-html-report
+          path: newman-report.html

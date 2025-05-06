@@ -28,7 +28,7 @@ jobs:
       - name: Download Postman Environment
         run: |
           curl -X GET "https://api.getpostman.com/environments/44656000-fdc57671-4929-4dd5-9a10-8ccf9efd690d" ^
-          -H "X-Api-Key: ${{ secrets.POSTMAN_K }}" ^
+          --header "X-Api-Key: ${{ secrets.POSTMAN_K }}" ^
           -o environment.json
 
       - name: Transform Environment File (PowerShell)

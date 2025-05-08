@@ -110,83 +110,23 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "98cca680-7dd2-4db6-a942-c961a0733c97",
 												"exec": [
-													"// JSON olarak parse etmeye çalışalım",
-													"let responseText = pm.response.text();",
-													"let isJson = false;",
-													"let jsonData = null;",
-													"",
-													"try {",
-													"    jsonData = pm.response.json();",
-													"    isJson = true;",
-													"} catch (e) {",
-													"    console.log(\"❌ Response is not valid JSON.\");",
-													"}",
-													"",
-													"// Eğer JSON'sa...",
-													"if (isJson) {",
-													"    const rawLength = responseText.length;",
-													"",
-													"    // Eğer küçükse direkt bastır",
-													"    if (rawLength < 300) {",
-													"        console.log(\"✅ Response Body:\");",
-													"        console.log(JSON.stringify(jsonData, null, 2));",
-													"    } else {",
-													"        // Array varsa onun uzunluğunu gösterelim",
-													"        let itemCount = 0;",
-													"        if (Array.isArray(jsonData)) {",
-													"            itemCount = jsonData.length;",
-													"        } else if (Array.isArray(jsonData.data)) {",
-													"            itemCount = jsonData.data.length;",
-													"        }",
-													"",
-													"        console.log(\"📦 Response too long, not printing full body.\");",
-													"        console.log(\"🔢 Item Count:\", itemCount);",
-													"    }",
-													"} else {",
-													"    console.log(\"📄 Raw Response:\");",
-													"    console.log(responseText.substring(0, 300) + \"...\");",
-													"}",
 													""
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "98cca680-7dd2-4db6-a942-c961a0733c97"
+												"packages": {}
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "b7142aae-0c7e-45b1-ab6d-d08b63fbd4d2",
 												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"var requestUrl = pm.request.url.toString();\r",
-													"var requestBody = pm.request.body.raw;\r",
-													"var statusCode = pm.response.code;\r",
-													"var responseTime = pm.response.responseTime;\r",
-													"var responseBody = pm.response.text();\r",
-													"\r",
-													"pm.test(\"Check number of records\", function () {\r",
-													"    var dataCount = jsonData.data.length;\r",
-													"\r",
-													"    console.log(\"\\n\");\r",
-													"    console.log(\"📤 [API Request]\");\r",
-													"    console.log(\"• URL       : \" + requestUrl);\r",
-													"    console.log(\"• Method    : \" + pm.request.method);\r",
-													"    console.log(\"• Body      : \" + requestBody);\r",
-													"\r",
-													"    console.log(\"\\n📥 [API Response]\");\r",
-													"    console.log(\"• Status    : \" + statusCode);\r",
-													"    console.log(\"• Time      : \" + responseTime + \" ms\");\r",
-													"    console.log(\"• Body      : \" + responseBody);\r",
-													"\r",
-													"    console.log(\"\\n📊 [Test Info]\");\r",
-													"    console.log(\"• Record Count: \" + dataCount);\r",
-													"    console.log(\"====================================\\n\");\r",
-													"});"
+													""
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "b7142aae-0c7e-45b1-ab6d-d08b63fbd4d2"
+												"packages": {}
 											}
 										}
 									],
@@ -226,37 +166,19 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "f1880bec-3a21-4042-a755-bbf5548b1fb5",
 												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"var requestUrl = pm.request.url.toString();\r",
-													"var requestBody = pm.request.body.raw;\r",
-													"var statusCode = pm.response.code;\r",
-													"var responseTime = pm.response.responseTime;\r",
-													"var responseBody = pm.response.text();\r",
-													"\r",
-													"pm.test(\"Check number of records\", function () {\r",
-													"    var dataCount = jsonData.data.length;\r",
-													"\r",
-													"    console.log(\"\\n\");\r",
-													"    console.log(\"📤 [API Request]\");\r",
-													"    console.log(\"• URL       : \" + requestUrl);\r",
-													"    console.log(\"• Method    : \" + pm.request.method);\r",
-													"    console.log(\"• Body      : \" + requestBody);\r",
-													"\r",
-													"    console.log(\"\\n📥 [API Response]\");\r",
-													"    console.log(\"• Status    : \" + statusCode);\r",
-													"    console.log(\"• Time      : \" + responseTime + \" ms\");\r",
-													"    console.log(\"• Body      : \" + responseBody);\r",
-													"\r",
-													"    console.log(\"\\n📊 [Test Info]\");\r",
-													"    console.log(\"• Record Count: \" + dataCount);\r",
-													"    console.log(\"====================================\\n\");\r",
-													"});\r",
 													""
 												],
 												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
 												"packages": {},
-												"id": "f1880bec-3a21-4042-a755-bbf5548b1fb5"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -296,36 +218,19 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "9745d950-ac72-4cd3-8f70-69ef26c39df2",
 												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"var requestUrl = pm.request.url.toString();\r",
-													"var requestBody = pm.request.body.raw;\r",
-													"var statusCode = pm.response.code;\r",
-													"var responseTime = pm.response.responseTime;\r",
-													"var responseBody = pm.response.text();\r",
-													"\r",
-													"pm.test(\"Check number of records\", function () {\r",
-													"    var dataCount = jsonData.data.length;\r",
-													"\r",
-													"    console.log(\"\\n\");\r",
-													"    console.log(\"📤 [API Request]\");\r",
-													"    console.log(\"• URL       : \" + requestUrl);\r",
-													"    console.log(\"• Method    : \" + pm.request.method);\r",
-													"    console.log(\"• Body      : \" + requestBody);\r",
-													"\r",
-													"    console.log(\"\\n📥 [API Response]\");\r",
-													"    console.log(\"• Status    : \" + statusCode);\r",
-													"    console.log(\"• Time      : \" + responseTime + \" ms\");\r",
-													"    console.log(\"• Body      : \" + responseBody);\r",
-													"\r",
-													"    console.log(\"\\n📊 [Test Info]\");\r",
-													"    console.log(\"• Record Count: \" + dataCount);\r",
-													"    console.log(\"====================================\\n\");\r",
-													"});"
+													""
 												],
 												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
 												"packages": {},
-												"id": "9745d950-ac72-4cd3-8f70-69ef26c39df2"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -383,7 +288,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"customerCode\": null,\r\n  \"newCustomerCode\": \"0011805658\",\r\n  \"oldCustomerCode\": \"0011842524\",\r\n  \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200122813\\\"},{\\\"cardno\\\":\\\"1200122812\\\"}]}\",\r\n  \"requestDate\": \"2025-05-06T00:00:00\",\r\n  \"RequestDateString\": \"2025-05-06T00:00:00\",\r\n  \"isNowFlag\": 0,\r\n  \"isAllPlateBulkHandover\": false,\r\n  \"callerUser\": \"93221\",\r\n  \"requestUser\": \"93221\",\r\n  \"requestChannel\": \"SFSBO\",\r\n  \"oneHubLogSequence\": 0\r\n}",
+											"raw": "{\r\n    \"customerCode\": null,\r\n    \"newCustomerCode\": \"0012121167\",\r\n    \"oldCustomerCode\": \"0011842524\",\r\n    \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200122808\\\"},{\\\"cardno\\\":\\\"1200122807\\\"}]}\",\r\n    \"requestDate\": \"2025-05-07T00:00:00\",\r\n    \"RequestDateString\": \"2025-05-07T00:00:00\",\r\n    \"isNowFlag\": 0,\r\n    \"isAllPlateBulkHandover\": false,\r\n    \"callerUser\": \"93221\",\r\n    \"requestUser\": \"93221\",\r\n    \"requestChannel\": \"SFSBO\",\r\n    \"oneHubLogSequence\": 0\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -412,34 +317,17 @@
 											"script": {
 												"id": "754441a7-baee-4393-990a-009dc9e571ea",
 												"exec": [
-													"var jsonData = pm.response.json();\r",
-													"var requestUrl = pm.request.url.toString();\r",
-													"var requestBody = pm.request.body.raw;\r",
-													"var statusCode = pm.response.code;\r",
-													"var responseTime = pm.response.responseTime;\r",
-													"var responseBody = pm.response.text();\r",
-													"\r",
-													"pm.test(\"Check number of records\", function () {\r",
-													"    var dataCount = jsonData.data.length;\r",
-													"\r",
-													"    console.log(\"\\n\");\r",
-													"    console.log(\"📤 [API Request]\");\r",
-													"    console.log(\"• URL       : \" + requestUrl);\r",
-													"    console.log(\"• Method    : \" + pm.request.method);\r",
-													"    console.log(\"• Body      : \" + requestBody);\r",
-													"\r",
-													"    console.log(\"\\n📥 [API Response]\");\r",
-													"    console.log(\"• Status    : \" + statusCode);\r",
-													"    console.log(\"• Time      : \" + responseTime + \" ms\");\r",
-													"    console.log(\"• Body      : \" + responseBody);\r",
-													"\r",
-													"    console.log(\"\\n📊 [Test Info]\");\r",
-													"    console.log(\"• Record Count: \" + dataCount);\r",
-													"    console.log(\"====================================\\n\");\r",
-													"});"
+													""
 												],
 												"type": "text/javascript",
 												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"packages": {},
+												"type": "text/javascript"
 											}
 										}
 									],

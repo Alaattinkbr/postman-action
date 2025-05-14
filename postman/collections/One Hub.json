@@ -288,7 +288,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"customerCode\": null,\r\n    \"newCustomerCode\": \"0012121167\",\r\n    \"oldCustomerCode\": \"0011842524\",\r\n    \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200122808\\\"},{\\\"cardno\\\":\\\"1200122807\\\"}]}\",\r\n    \"requestDate\": \"2025-05-07T00:00:00\",\r\n    \"RequestDateString\": \"2025-05-07T00:00:00\",\r\n    \"isNowFlag\": 0,\r\n    \"isAllPlateBulkHandover\": false,\r\n    \"callerUser\": \"93221\",\r\n    \"requestUser\": \"93221\",\r\n    \"requestChannel\": \"SFSBO\",\r\n    \"oneHubLogSequence\": 0\r\n}",
+											"raw": "{\r\n    \"customerCode\": null,\r\n    \"newCustomerCode\": \"0012597119\",\r\n    \"oldCustomerCode\": \"0011842524\",\r\n    \"jsonData\": \"{\\\"transfers\\\":[{\\\"cardno\\\":\\\"1200122815\\\"},{\\\"cardno\\\":\\\"1200122813\\\"}]}\",\r\n    \"requestDate\": \"2025-05-09T00:00:00\",\r\n    \"RequestDateString\": \"2025-05-09T00:00:00\",\r\n    \"isNowFlag\": 0,\r\n    \"isAllPlateBulkHandover\": false,\r\n    \"callerUser\": \"93221\",\r\n    \"requestUser\": \"93221\",\r\n    \"requestChannel\": \"SFSBO\",\r\n    \"oneHubLogSequence\": 0\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -640,59 +640,23 @@
 								{
 									"listen": "prerequest",
 									"script": {
+										"id": "d4d973bf-d53b-46e2-a8f9-12b9543be9e6",
 										"exec": [
-											"// JSON olarak parse etmeye çalışalım\r",
-											"let responseText = pm.response.text();\r",
-											"let isJson = false;\r",
-											"let jsonData = null;\r",
-											"\r",
-											"try {\r",
-											"    jsonData = pm.response.json();\r",
-											"    isJson = true;\r",
-											"} catch (e) {\r",
-											"    console.log(\"❌ Response is not valid JSON.\");\r",
-											"}\r",
-											"\r",
-											"// Eğer JSON'sa...\r",
-											"if (isJson) {\r",
-											"    const rawLength = responseText.length;\r",
-											"\r",
-											"    // Eğer küçükse direkt bastır\r",
-											"    if (rawLength < 300) {\r",
-											"        console.log(\"✅ Response Body:\");\r",
-											"        console.log(JSON.stringify(jsonData, null, 2));\r",
-											"    } else {\r",
-											"        // Array varsa onun uzunluğunu gösterelim\r",
-											"        let itemCount = 0;\r",
-											"        if (Array.isArray(jsonData)) {\r",
-											"            itemCount = jsonData.length;\r",
-											"        } else if (Array.isArray(jsonData.data)) {\r",
-											"            itemCount = jsonData.data.length;\r",
-											"        }\r",
-											"\r",
-											"        console.log(\"📦 Response too long, not printing full body.\");\r",
-											"        console.log(\"🔢 Item Count:\", itemCount);\r",
-											"    }\r",
-											"} else {\r",
-											"    console.log(\"📄 Raw Response:\");\r",
-											"    console.log(responseText.substring(0, 300) + \"...\");\r",
-											"}"
+											""
 										],
 										"type": "text/javascript",
-										"packages": {},
-										"id": "d4d973bf-d53b-46e2-a8f9-12b9543be9e6"
+										"packages": {}
 									}
 								},
 								{
 									"listen": "test",
 									"script": {
+										"id": "be7461ce-4d4c-4da1-8f02-f496bb387211",
 										"exec": [
-											"\r",
 											""
 										],
 										"type": "text/javascript",
-										"packages": {},
-										"id": "be7461ce-4d4c-4da1-8f02-f496bb387211"
+										"packages": {}
 									}
 								}
 							],
@@ -1029,7 +993,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"customerCode\": \"0010327115\",\r\n  \"resellerCode\": \"0010327115\",\r\n  \"textLoad\": \"test\",\r\n  \"callerCustomer\": \"*\",\r\n  \"callerUser\": \"93221\",\r\n  \"requestChannel\": null,\r\n  \"limit\": 500\r\n}",
+									"raw": "{\r\n    \"customerCode\": \"0010327115\",\r\n    \"resellerCode\": \"0010327115\",\r\n    \"textLoad\": \"Audit-test\",\r\n    \"callerCustomer\": \"*\",\r\n    \"callerUser\": \"93221\",\r\n    \"requestChannel\": null,\r\n    \"limit\": 2300.0\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2031,7 +1995,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"transactionTypeCode\": null,\r\n    \"customerCode\": null,\r\n    \"cardNumber\": null,\r\n    \"cardText\": \"OMER DEMIROZ\",\r\n    \"isReseller\": true,\r\n    \"startDate\": \"2025-01-01T00:00:00\",\r\n    \"endDate\": \"2025-12-31T23:59:59\",\r\n    \"MaxDateRange\": 92,\r\n    \"paginationFilter\": {\r\n        \"currentPage\": 1,\r\n        \"pageSize\": 100\r\n    }\r\n}",
+									"raw": "{\r\n    \"transactionTypeCode\": null,\r\n    \"customerCode\": \"0011805658\",\r\n    \"cardNumber\": null,\r\n    \"cardText\": null,\r\n    \"isReseller\": true,\r\n    \"startDate\": \"2025-05-05T00:00:00\",\r\n    \"endDate\": \"2025-05-11T23:59:59\",\r\n    \"MaxDateRange\": 92,\r\n    \"paginationFilter\": {\r\n        \"currentPage\": 1,\r\n        \"pageSize\": 100\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2935,14 +2899,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseUrlCore}}/api/praticcard/getgiftcardslimitandstatus",
+									"raw": "{{BaseUrlCore}}/api/praticcard/getgiftcarddetailsss",
 									"host": [
 										"{{BaseUrlCore}}"
 									],
 									"path": [
 										"api",
 										"praticcard",
-										"getgiftcardslimitandstatus"
+										"getgiftcarddetailsss"
 									]
 								}
 							},
@@ -4023,7 +3987,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"plateProvisionInfo\": {\r\n    \"retailOutletCode\": \"string\",\r\n    \"username\": \"string\",\r\n    \"password\": \"string\",\r\n    \"ip\": \"string\",\r\n    \"role\": \"string\",\r\n    \"processRetailOutletCode\": \"string\",\r\n    \"plate\": \"string\"\r\n  },\r\n  \"cardNo\": \"string\",\r\n  \"customerCode\": \"string\",\r\n  \"plateMode\": \"string\"\r\n}",
+									"raw": "{\r\n    \"plateProvisionInfo\": {\r\n        \"retailOutletCode\": \"4005\",\r\n        \"username\": \"alaattin_sfsbo\",\r\n        \"password\": \"Nabu2027!\",\r\n        \"ip\": \"::1\",\r\n        \"role\": \"Shell Backoffice Admin\",\r\n        \"processRetailOutletCode\": \"4005\",\r\n        \"plate\": \"34TEST97\"\r\n    },\r\n    \"cardNo\": \"7083288000000055\",\r\n    \"customerCode\": \"0011798208\",\r\n    \"plateMode\": \"U\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4087,7 +4051,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"retailOutletCode\": \"string\",\r\n  \"username\": \"string\",\r\n  \"password\": \"string\",\r\n  \"ip\": \"string\",\r\n  \"role\": \"string\",\r\n  \"stationCode\": \"string\",\r\n  \"customerCode\": \"string\",\r\n  \"plate\": \"string\",\r\n  \"cardNo\": \"string\",\r\n  \"transactionDate\": \"2023-07-10T14:03:59.452Z\",\r\n  \"fuelType\": 0,\r\n  \"unitPrice\": 0,\r\n  \"volume\": 0,\r\n  \"salesTotalAmount\": 0,\r\n  \"formNo\": \"string\"\r\n}",
+									"raw": "{\r\n    \"retailOutletCode\": \"4005\",\r\n    \"username\": \"alaattin_sfsbo\",\r\n    \"password\": \"Nabu2027!\",\r\n    \"ip\": \"::1\",\r\n    \"role\": \"Shell Backoffice Admin\",\r\n    \"stationCode\": \"4005\",\r\n    \"customerCode\": \"0011798208\",\r\n    \"plate\": \"06CTC538\",\r\n    \"cardNo\": \"7083288000000055\",\r\n    \"transactionDate\": \"2025-05-08T23:10:22.5695054+03:00\",\r\n    \"fuelType\": 7,\r\n    \"unitPrice\": 34.0,\r\n    \"volume\": 10.0,\r\n    \"salesTotalAmount\": 340.0,\r\n    \"formNo\": \"234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4151,7 +4115,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"retailOutletCode\": \"string\",\r\n  \"startDate\": \"2023-07-10T14:05:01.879Z\",\r\n  \"endDate\": \"2023-07-10T14:05:01.879Z\"\r\n}",
+									"raw": "{\r\n  \"retailOutletCode\": \"string\",\r\n  \"startDate\": \"2023-07-10T14:05:01.879Z\",\r\n  \"endDate\": \"2025-07-10T14:05:01.879Z\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4311,7 +4275,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"provisionNumber\": \"string\"\r\n}",
+									"raw": "{\r\n  \"provisionNumber\": \"PRV2403266113\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4407,7 +4371,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"customerCode\": \"string\",\r\n  \"jsonData\": \"string\",\r\n  \"provisionNumber\": \"string\",\r\n  \"processType\": \"string\",\r\n  \"callerUser\": \"string\",\r\n  \"requestChannel\": \"string\",\r\n  \"requestUser\": \"string\",\r\n  \"oneHubLogSequence\": 0\r\n}",
+									"raw": "{\r\n    \"jsonData\": null,\r\n    \"retailCode\": null,\r\n    \"provisionNumber\": \"PRV2405063108\",\r\n    \"processType\": \"Reject\",\r\n    \"callerUser\": \"93221\",\r\n    \"requestChannel\": \"SFSBO\",\r\n    \"requestUser\": \"93221\",\r\n    \"oneHubLogSequence\": 0\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4539,6 +4503,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "d20fc20d-4f88-47cf-8c20-52cb610bb3d8",
 												"exec": [
 													"let responseText = pm.response.text();\r",
 													"let isJson = false;\r",
@@ -4575,19 +4540,18 @@
 													""
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "d20fc20d-4f88-47cf-8c20-52cb610bb3d8"
+												"packages": {}
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "ed1b7523-7159-485c-8b55-79fbd25af40d",
 												"exec": [
 													""
 												],
 												"type": "text/javascript",
-												"packages": {},
-												"id": "ed1b7523-7159-485c-8b55-79fbd25af40d"
+												"packages": {}
 											}
 										}
 									],
@@ -4600,7 +4564,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "\n{\n  \"handoverSequence\": null,\n  \"customerCode\": \"\",\n  \"plateCode\": null,\n  \"startDate\": \"2023-11-27T00:00:00\",\n  \"endDate\": \"2024-04-30T23:59:59\",\n  \"paginationFilter\": {\n    \"currentPage\": 1,\n    \"pageSize\": 100\n  }\n}\n{\n  \"handoverSequence\": null,\n  \"customerCode\": \"\",\n  \"plateCode\": null,\n  \"startDate\": \"2023-10-01T00:00:00\",\n  \"endDate\": \"2023-10-31T23:59:59\",\n  \"paginationFilter\": {\n    \"currentPage\": 1,\n    \"pageSize\": 100\n  }\n}",
+											"raw": "{\n    \"handoverSequence\": null,\n    \"customerCode\": \"\",\n    \"plateCode\": null,\n    \"startDate\": \"2025-05-05T00:00:00\",\n    \"endDate\": \"2025-05-11T23:59:59\",\n    \"paginationFilter\": {\n        \"currentPage\": 1,\n        \"pageSize\": 100\n    }\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -5821,7 +5785,7 @@
 							"response": []
 						},
 						{
-							"name": "ccreateProduct",
+							"name": "createProduct",
 							"id": "3dda26eb-b42b-4a8c-99fe-b1d5843fc051",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -5831,7 +5795,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"productGroupCode\": \"MGL\",\n    \"productCode\": \"22\",\n    \"productName\": \"TEST\",\n    \"gsapMarketCode\": \"405644343\",\n    \"gsapMarketName\": \"TEST\",\n    \"unitOfMeasure\": \"L15\",\n    \"fuelGroupCode\": \"AGO\",\n    \"esPurchaseCategory\": \"0\",\n    \"volumeOnInvoiceFlag\": null,\n    \"vatPercentage\": 4.0,\n    \"vatEffectiveDate\": \"2023-11-29T00:00:00\",\n    \"sctAmount\": 3.0,\n    \"sctEffectiveDate\": \"2023-11-22T00:00:00\",\n    \"invoiceToDealer\": null,\n    \"invoiceToCustomer\": null,\n    \"status\": 1\n}",
+									"raw": "{\n    \"productGroupCode\": \"PCD\",\n    \"productCode\": \"823\",\n    \"productName\": \"TEST22\",\n    \"gsapMarketCode\": \"4000033\",\n    \"gsapMarketName\": \"test-diğer\",\n    \"unitOfMeasureCode\": \"OKOKO\",\n    \"esPurchaseCategory\": \"32\",\n    \"volumeOnInvoiceFlag\": 1,\n    \"status\": 1\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5839,14 +5803,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseUrlCore}}/api/productdefinition/ccreateProduct",
+									"raw": "{{BaseUrlCore}}/api/productdefinition/createProduct",
 									"host": [
 										"{{BaseUrlCore}}"
 									],
 									"path": [
 										"api",
 										"productdefinition",
-										"ccreateProduct"
+										"createProduct"
 									]
 								}
 							},
@@ -5863,7 +5827,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"productGroupCode\": \"VIS\",\n  \"oldProductGroupCode\": \"VIS\",\n  \"oldProductCode\": \"33\",\n  \"productCode\": \"33\",\n  \"productName\": \"MOTORIN\",\n  \"gsapMarketName\": \"MOTORIN - SHELL VP DIESEL1\",\n  \"status\": 0\n}",
+									"raw": "{\n    \"productGroupCode\": \"PCD\",\n    \"oldProductGroupCode\": \"PCD\",\n    \"oldProductCode\": \"823\",\n    \"productCode\": \"824\",\n    \"productName\": \"TEST22/99\",\n    \"gsapMarketCode\": \"4000033\",\n    \"gsapMarketName\": \"test-ürün\",\n    \"unitOfMeasureCode\": \"OKOKO\",\n    \"status\": 0\n}",
 									"options": {
 										"raw": {
 											"language": "json"
